@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="checkbox" v-model="checked">
+        <!-- <h1 v-if="checked">跳樓大拍賣</h1> -->
+        <!-- v-else只能接在v-if正下方且同一層，連插入</br>都不行 -->
+        <!-- <h1 v-else>老闆不在家</h1> -->
+
+
+        <!-- template不是真的元素，是一個模板用來包住其他元素 -->
+        <template v-if="checked">
+            <h1>跳樓大拍賣</h1>
+            <h2>跳樓大拍賣</h2>
+            <h3>跳樓大拍賣</h3>
+        </template>
+        <h1 v-else>老闆不在家</h1>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                checked: false,
+            }
+        });
+    </script>
+</body>
+
+</html>

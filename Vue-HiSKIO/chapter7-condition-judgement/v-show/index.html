@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="checkbox" v-model="checked">
+        <!-- v-show只是顯示與不顯示，元素都存在 -->
+        <!-- v-show不能搭配template，不能搭配v-else，但可以搭配v-if， -->
+        <h1 v-show="checked">跳樓大拍賣</h1>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                checked: false,
+            },
+
+        });
+    </script>
+</body>
+
+</html>
