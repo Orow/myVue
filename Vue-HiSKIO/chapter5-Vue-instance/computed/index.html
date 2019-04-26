@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="number" v-model="a">
+        +
+        <input type="number" v-model="b">
+        =
+        <!-- <span>{{answer}}</span> -->
+        <input type="number" v-model="answer">
+        <br>
+        {{a}}+{{b}}={{answer}}
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el:"#app",
+            data:{
+                a : 0,
+                b : 0,
+            },
+            // computed裡可以宣告成函式，也可以宣告為物件
+            computed:{
+                // answer(){
+                //     return parseInt(this.a) + parseInt(this.b);
+                // }
+
+                // 物件中可以宣告get, set函式，要取用answer值就會呼叫get函式，要設定時就呼叫set函式
+                answer:{
+                    get(){
+                        return parseInt(this.a) + parseInt(this.b);
+                    },
+                    // set 不需要return
+                    set(val){
+                        this.b = parseInt(val) - parseInt(this.a);
+                    },
+                },
+            },
+        });
+    </script>
+</body>
+</html>

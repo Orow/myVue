@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- V-once 只會渲染一開始的參數 -->
+        <span v-once>{{message}}</span>
+        <br>
+        <span>{{message}}</span>
+        <br>
+        <button v-on:click="append">Append</button>
+
+        <!-- v-html 插入html tag -->
+        <span v-html='name'></span>
+    </div>
+
+    <script>
+        // v-once
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello world!'
+            },
+            methods: {
+                append() {
+                    this.message += '!';
+                }
+            }
+        });
+        // v-html
+        new Vue({
+            el:'#app',
+            data:{
+                name:'<h1>Hello World!</h1>'
+            }
+        });
+    </script>
+</body>
+
+</html>

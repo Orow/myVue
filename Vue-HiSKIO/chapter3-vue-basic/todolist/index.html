@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToDoList</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <input type="text" v-model="input">
+            <button v-on:click="add">Add</button>
+        </div>
+        <ul>
+            <!-- removeItem(item)如果相同會刪到第一筆 -->
+            <!-- <li 
+                v-for="item in items"
+                v-on:click="removeItem(item)"
+            > -->
+
+            <!-- removeItem(index)改用index -->
+            <li v-for="(item, index) in items" v-on:click="removeItem(index)">
+                {{item}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                input: '',
+                items: [
+                    'ABC',
+                    'DEF',
+                    'GHI',
+                ],
+            },
+            methods: {
+                add() {
+                    this.items.push(this.input);
+                    console.log(this);
+                    this.input = '';
+                },
+                removeItem(index) {
+                    // 傳進index，不需要再找index
+                    // const idx = this.items.indexOf(item);
+                    this.items.splice(index, 1);
+                }
+            },
+
+        });
+    </script>
+</body>
+
+</html>

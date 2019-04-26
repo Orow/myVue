@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+
+    <style>
+        .submit {
+            background: #28a745;
+            color: white;
+            border-radius: 8px;
+            padding: 4px 8px;
+            border: none;
+        }
+
+        .submit.disabled {
+            background: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="text">
+        <button v-bind:class="btnClass">Submit</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                text: '',
+                //class綁定也可以直接用陣列，不用computed計算
+                // btnClass: [
+                //     'submit',
+                //     'disabled'
+                // ],
+            },
+            computed: {
+                // if判斷，return回傳字串或物件
+                // btnClass(){
+                //     if(this.text.length === 0){
+                //         // return 'submit disabled';
+                //         // 可以return字串也可以是物件
+                //         return {
+                //             submit: true,
+                //             disabled: true,
+                //         }
+                //     }else{
+                //         // return 'submit';
+                //         return {
+                //             submit:true,
+                //             disabled:false,
+                //         }
+                //     }
+                // },
+
+                // 簡潔做法，直接return物件
+                btnClass() {
+                    return {
+                        submit: true,
+                        disabled: this.text.length === 0,
+                    }
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>

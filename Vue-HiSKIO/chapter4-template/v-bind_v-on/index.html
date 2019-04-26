@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 如果要塞值的地方不是DOM，而是內部屬性 -->
+        <!-- <input type="checkbox" v-bind:checked="selected">
+        <button v-on:click='toggle'>Toggle</button> -->
+
+        <!-- 屬性的資料塞入表達式 -->
+        <span>{{count}}</span>
+        <!-- <input type="checkbox" v-bind:checked="count%2===0"> -->
+        <input type="checkbox" :checked="count%2===0">
+        <!-- <button v-on:click='add'>Add</button> -->
+        <button @click='add'>Add</button>
+    </div>
+    <script>
+        // 如果要塞值的地方不是DOM，而是內部屬性
+        // new Vue({
+        //     el: '#app',
+        //     data: {
+        //         selected: false,
+        //     },
+        //     methods:{
+        //         toggle(){
+        //             this.selected = !this.selected;
+        //         }
+        //     }
+        // });
+
+        // 屬性的資料塞入表達式
+        new Vue({
+            el: "#app",
+            data: {
+                count: 0,
+            },
+            methods: {
+                add() {
+                    this.count += 1
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>

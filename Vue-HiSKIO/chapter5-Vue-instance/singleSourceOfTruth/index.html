@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script> -->
+</head>
+<body>
+    <div id="app">
+        <!-- <label>
+            <input type="checkbox" :checked="a" @change="select('a')">
+            <span>a</span>
+        </label>
+        <label>
+            <input type="checkbox" :checked="b" @change="select('b')">
+            <span>b</span>
+        </label>
+        <label>
+            <input type="checkbox" :checked="c" @change="select('c')">
+            <span>c</span>
+        </label> -->
+
+        <!-- 土法2、實務 -->
+        <label>
+            <input type="checkbox" v-model="a">
+            <span>a</span>
+        </label>
+        <label>
+            <input type="checkbox" v-model="b">
+            <span>b</span>
+        </label>
+        <label>
+            <input type="checkbox" v-model="c">
+            <span>c</span>
+        </label>
+        <br>
+        <span>{{selected}}</span>
+    </div>
+
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                a:false,
+                b:false,
+                c:false,
+                // selected: [], // 土法 1 用computed來達成single source of truth
+            },
+            computed:{
+                // 土法 2
+                // selected(){
+                //     const result = [];
+                //     if(this.a) result.push('a');
+                //     if(this.b) result.push('b');
+                //     if(this.c) result.push('c');
+                //     return result;
+                // },
+
+                // 實務上用法 v-model
+                selected(){
+                    return ['a', 'b', 'c'].filter(item => this[item]);
+                },
+            },
+            // methods:{
+            //     // 土法 1
+            //     // select(item){
+            //     //     const idx = this.selected.indexOf(item);
+            //     //     // 找不到就會回傳index = -1
+            //     //     if(idx === -1){
+            //     //         this.selected.push(item);
+            //     //         // this[item]=true; // 用來改變data中各屬性的布林值，2.5.3版單純點擊checkbox不會打勾
+            //     //     } else {
+            //     //         this.selected.splice(idx, 1);
+            //     //         // this[item]=false; // 用來改變data中各屬性的布林值，2.5.3版單純點擊checkbox不會打勾
+            //     //     }
+            //     // },
+            //     // 土法 2
+            //     // select(item){
+            //     //     this[item] = !this[item];
+            //     // },
+            // },
+        });
+    </script>
+</body>
+</html>

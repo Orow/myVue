@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="counter">
+        <!-- add +1 v-on監聽-->
+        <!-- <h1>{{count}}</h1>
+        <button v-on:click="add">+1</button> -->
+
+        <!-- remove -1 v-on監聽 -->
+        <!-- <ul>
+            <li v-for="item in items">{{item}}</li>
+        </ul>
+        <button v-on:click='remove'>-1</button> -->
+
+        <!-- 雙向綁定 v-model -->
+        <input type="text" v-model="text">
+        <span>{{text}}</span>
+    </div>
+
+    <script>
+        // add +1 v-on監聽
+        // new Vue({
+        //     el: '#counter',
+        //     data: {
+        //         count: 0,
+        //     },
+        //     methods: {
+        //         add() {
+        //             this.count += 1;
+        //         },
+        //     },
+        // });
+        
+        // remove -1 v-on監聽
+        // new Vue({
+        //     el: '#counter',
+        //     data: {
+        //         items: [1, 2, 3, 4, 5]
+        //     },
+        //     methods: {
+        //         remove() {
+        //             this.items.pop();
+        //         },
+        //     },
+        // });
+
+        // 雙向綁定 v-model
+        new Vue({
+            el: '#counter',
+            data:{
+                text: '',
+            },
+        });
+    </script>
+</body>
+
+</html>

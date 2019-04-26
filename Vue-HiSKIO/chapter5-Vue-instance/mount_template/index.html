@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+    </div>
+
+    <script>
+        // const vm可以省略
+        // const vm =  new Vue({
+        // });
+
+        const vm = new Vue({
+            el:'#app', // mount，CSS selector
+            // el: document.getElementById('app'),
+            // template是字串，掛載後會取代html中元素裡面的內容
+            template:"<div><h2>{{msg}}{{msg}}</h2></div>",
+            data:{
+                msg: 'Hello!!'
+            }
+        });
+        // 宣告實例後，需要再去掛載
+        // vm.$mount('#app');
+        // vm.$mount(document.getElementById('app'));
+
+    </script>
+</body>
+
+</html>

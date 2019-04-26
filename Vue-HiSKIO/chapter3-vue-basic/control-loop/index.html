@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 基本 -->
+        <!-- <span>{{message}}</span> -->
+
+        <!-- if else -->
+        <!-- <span v-if='see'>Now you see me!</span>
+        <span v-else='see'>Now you don't.</span> -->
+
+        <!-- for -->
+        <div v-for='step in steps'>{{step}}</div>
+
+    </div>
+    <script>
+        // 基本
+        // new Vue({
+        //     el: '#app',
+        //     data: {
+        //         message: 'Hello Orow, this is new fWorld'
+        //     }
+        // });
+
+        // if-else
+        // new Vue ({
+        //     el: '#app',
+        //     data: {
+        //         see: false
+        //     },
+        // });
+
+        // for
+        new Vue({
+            el: '#app',
+            data: {
+                steps:[
+                    '學 JavaScript',
+                    '學 Vue',
+                    '年薪百萬'
+                ]
+            },
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <input type="text" v-model="value">
+        <span>{{valuex2}}</span> -->
+        
+        <!-- deep -->
+        <!-- <input type="text" v-model="input.a"> -->
+
+        <!-- watch 命令式 -->
+        <input type="text" v-model="a">+
+        <input type="text" v-model="b">=
+        <input type="text" v-model="c">
+        
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el:"#app",
+            data:{
+                // value: 0,
+
+                // input:{
+                //     a:"",
+                // },
+                a: 0,
+                b: 0,
+                c: 0,
+            },
+            methods:{},
+            computed:{
+                valuex2(){
+                    return parseInt(this.value) * 2;
+                }
+            },
+            // 物件，宣告成函式，命名要跟data一樣，會偵聽data, methods(不會變), computed中該屬性的值
+            // watch:{
+            //     value(val, oldVal){
+            //         console.log(`${oldVal} -> ${val}`);
+            //     },
+            //     valuex2(val, oldVal){
+            //         console.log(`${oldVal} -> ${val}`);
+            //     },
+            // },
+            // Watch 也可以宣告成物件
+            watch:{
+                // value:{
+                //     handler(val, oldVal){
+                //         console.log(`${oldVal} -> ${val}`);
+                //     },
+                // input:{
+                //     handler(val, oldVal){
+                //         console.log(val === oldVal);
+                //         console.log(`${oldVal} -> ${val}`);
+                //     },
+                //     // true, 初始化就會跑一次watch
+                //     // immediate: true,
+
+                //     // deep只能用來偵聽「屬性的內容」是陣列或是物件
+                //     deep: true,
+                // },
+                // 不符合聲明式且效能差，直接用computed，比較簡潔也符合聲明式，效能也比較好
+                a(val){
+                    this.c = parseInt(val) + parseInt(this.b);
+                },
+                b(val){
+                    this.c = parseInt(val) + parseInt(this.a);
+                },
+            },
+        });
+    </script>
+</body>
+</html>
