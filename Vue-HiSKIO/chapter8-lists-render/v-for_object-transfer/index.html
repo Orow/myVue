@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <div v-for="value in friend">{{value}}</div> -->
+
+        <!-- 取key，v-for在物件中無法保證render後的順序，要照順序用array -->
+        <!-- <div v-for="(value, key) in friend">{{key}}:{{value}}</div> -->
+
+        <!-- render要照順序用array -->
+        <div v-for="item in friend">{{item.prop}} - {{item.value}}</div>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                // friend: {
+                //     name: 'Joe',
+                //     id: 'Superman',
+                //     age: '27',
+                //     password: '12345',
+                // },
+
+                friend: [{
+                        prop: 'name',
+                        value: 'Joe'
+                    },
+                    {
+                        prop: 'id',
+                        value: 'Superman'
+                    },
+                    {
+                        prop: 32,
+                        value: '訂婚'
+                    },
+                    {
+                        prop: 28,
+                        value: '創辦公司'
+                    },
+                ],
+            },
+        });
+    </script>
+</body>
+
+</html>

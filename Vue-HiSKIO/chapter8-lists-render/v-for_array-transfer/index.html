@@ -20,6 +20,7 @@
             <!-- 如果知道陣列是從1到多少的實際數值，可以不用宣告陣列 -->
             <!-- <option v-for="month in 12">{{month}}</option> -->
 
+            <!-- 取的每個元素的index -->
             <option v-for="(month, index) in months" :value="index+1">{{month}}</option>
         </select>
     </div>
