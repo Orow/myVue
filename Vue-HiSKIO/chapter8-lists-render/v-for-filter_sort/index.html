@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="num in nums">{{num}}</li>
+        </ul>
+        <!-- Reverse -->
+        <button @click="reverse">Reverse</button>
+        <!-- All -->
+        <button @click="all">All</button>
+        <!-- Even -->
+        <button @click="even">Even</button>
+        <!-- Sort -->
+        <button @click="sort">Sort</button>
+    </div>
+
+    <script>
+        // const orgNums = [1,2,3,4,5,6,7,8,9];
+        const orgNums = [5, 8, 1, 4, 3, 2, 9, 7, 6];
+        new Vue({
+            el: '#app',
+            data: {
+                // nums:[1,2,3,4,5,6,7,8,9],
+                nums: orgNums,
+            },
+            methods: {
+                reverse() {
+                    this.nums.reverse();
+                },
+                even() {
+                    // this.nums = this.nums.filter(num => (num%2===0));
+                    this.nums = orgNums.filter(num => (num % 2 === 0));
+                },
+                all() {
+                    this.nums = orgNums;
+                },
+                // sort會修改原本的陣列，用slice則不會影響原本陣列
+                sort() {
+                    // this.nums = orgNums.sort();
+                    this.nums = orgNums.slice().sort();
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>
