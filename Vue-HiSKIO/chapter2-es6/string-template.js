@@ -9,6 +9,7 @@ greet('Tom');  // Hello, Tom!
 
 function greet(name, days){
     console.log(`Hello, ${name}! It's been ${days * 24}hours.`)
+    // 三元判斷式
     console.log(`Hello, ${name}! ${(days < 7)? '' : 'Long time no see!'}`)
 }
 greet('Jack', 3);

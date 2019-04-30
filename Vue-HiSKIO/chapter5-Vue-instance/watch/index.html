@@ -18,8 +18,7 @@
         <!-- watch 命令式 -->
         <input type="text" v-model="a">+
         <input type="text" v-model="b">=
-        <input type="text" v-model="c">
-        
+        <input type="text" v-model="c">  
     </div>
 
     <script>
@@ -37,9 +36,12 @@
             },
             methods:{},
             computed:{
-                valuex2(){
-                    return parseInt(this.value) * 2;
-                }
+                // valuex2(){
+                //     return parseInt(this.value) * 2;
+                // },
+                // c(){
+                //     return parseInt(this.a) + parseInt(this.b);
+                // },
             },
             // 物件，宣告成函式，命名要跟data一樣，會偵聽data, methods(不會變), computed中該屬性的值
             // watch:{

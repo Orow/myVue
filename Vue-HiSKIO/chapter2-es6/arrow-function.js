@@ -30,6 +30,7 @@ btn.addEventListener('click', () => console.log('Hi'));
 const a = () => {
     console.log(this);
 }
+console.log(this);
 
 // 視情況
 var b = function(){
@@ -46,18 +47,18 @@ var sayMyName = function(){
     console.log(this.name);
 }
 
-// 作為物件的成員函式執行：該物件
+// 作為物件的成員函式執行：this就是該物件
 var teacher = {
     name: 'White',
 }
 teacher.sayMyName = sayMyName;
 
 sayMyName(); // Heisenburg
-
 teacher.sayMyName(); // White
 
 // <button id='btn' name='God damn right'>Response</button>
-// 作為 dom 的監聽函式執行：該 dom
+// 作為 dom 的監聽函式執行：this就是該 dom
 btn.addEventListener('click', sayMyName);
+// God damn right
 
 // 如果都用箭頭函式，this就都會是window下，this.name為Heisenburg
