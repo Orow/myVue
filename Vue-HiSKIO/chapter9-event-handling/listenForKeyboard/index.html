@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <input v-model="input" @keydown="keydown"> -->
+
+        <!-- keydown.enter 不需要找key.Code -->
+        <input v-model="input" @keydown.enter="enter">
+
+        <!-- keydown.a 要預防a也出現，可以加上修飾符prevent -->
+        <input v-model="input" @keydown.a.prevent="a">
+        <ul>
+            <li v-for="item in lists">{{item}}</li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                input: '',
+                lists: [],
+            },
+            methods: {
+                // 事件發生時，程式會把事件回傳函式參數中
+                // keydown(event) {
+                //     // console.log(evt.keyCode);
+                //     // keyCode of enter is 13
+                //     if (event.keyCode === 13 ){
+                //         this.lists.push(this.input);
+                //         this.input = '';
+                //     }
+                // },
+                enter() {
+                    this.lists.push(this.input);
+                    this.input = '';
+                },
+                a() {
+                    this.lists.push(this.input);
+                    this.input = '';
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>

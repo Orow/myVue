@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <style>
+        .img.hide {
+            opacity: 0;
+            transform: scale(3) rotate(180deg);
+        }
+        .img {
+            transition:all 1s;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h4 v-if="loading">Loading</h4>
+        <h4 v-else>Complete</h4>
+        <img @load="loading=false" :class="imgClass" src="https://source.unsplash.com/random/320x240">
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                loading: true,
+            },
+            computed:{
+                imgClass(){
+                    if(this.loading) {
+                        return 'img hide';
+                    } else {
+                        return 'img';
+                    }
+                },
+            },
+        });
+    </script>
+</body>
+</html>

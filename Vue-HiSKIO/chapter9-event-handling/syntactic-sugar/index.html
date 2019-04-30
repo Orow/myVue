@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <style>
+        .box {
+            min-height: 80px;
+            min-width: 80px;
+            padding: 40px;
+            border: 2px solid red;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1 -->
+        <!-- <input @keydown.enter="..."> -->
+
+        <!-- 6 -->
+        <input @keydown.13="enter">
+
+        <!-- 2 -->
+        <!-- <a href="https://www.google.com/" target="_blank" @click="Click">google</a>
+        <br>
+        <a href="https://www.google.com/" target="_blank" @click.prevent="linkClick">google-syntactic-sugar</a> -->
+
+        <!-- 3 bubbling-->
+        <div class="box" @click="msg='C'">
+            <div class="box" @click="msg='B'">
+                <!-- <div class="box" @click="setA"> -->
+                <div class="box" @click.stop="msg='A'">
+                </div>
+            </div>
+        </div>
+        <!-- 4 capturing-->
+        <div class="box" @click.self="msg='C'">
+            <div class="box" @click.self="msg='B'">
+                <div class="box" @click.self="msg='A'">
+                </div>
+            </div>
+        </div>
+        <h1>{{msg}}</h1>
+        <!-- 5 -->
+        <h1>{{count}}</h1>
+        <button @click="count+=1">+1</button>
+        <button @click.once="count+=1">+1</button>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                // 3, 4
+                msg: '',
+                // 5
+                count: 0,
+            },
+            methods: {
+                // 2
+                // Click(evt){
+                //     evt.preventDefault();
+                //     alert("Don't");
+                // },
+                // linkClick(){
+                //     alert("syntactic-sugar-Don't");
+                // },
+
+                // 3
+                // setA(evt){
+                //     evt.stopPropagation();
+                //     this.msg = 'A';
+                // }
+
+            }
+        });
+    </script>
+</body>
+
+</html>

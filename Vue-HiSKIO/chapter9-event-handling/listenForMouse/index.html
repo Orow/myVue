@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{count}}</h1>
+        <!-- 移進去，移出來 -->
+        <button @mouseover="count+=1" @mouseout="count-=1">Mouse Move in & out</button>
+        <br>
+        <!-- 點擊下去，點擊後 -->
+        <button @mousedown="count+=1" @mouseup="count-=1">Mouse Click</button>
+        <br>
+        <!-- 在裡面一有移動就會觸發 -->
+        <button @mousemove="count+=1">Mouse Move</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                count : 0,
+            },
+        });
+    </script>
+</body>
+
+</html>
