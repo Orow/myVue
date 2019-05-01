@@ -21,7 +21,7 @@
 <body>
     <div id="app">
         <!-- 1 -->
-        <!-- <input @keydown.enter="..."> -->
+        <!-- <input @keydown.enter="enter"> -->
 
         <!-- 6 -->
         <input @keydown.13="enter">
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <!-- 4 capturing-->
+        <!-- 4 自己-->
         <div class="box" @click.self="msg='C'">
             <div class="box" @click.self="msg='B'">
                 <div class="box" @click.self="msg='A'">

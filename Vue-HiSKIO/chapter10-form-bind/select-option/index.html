@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1 -->
+        <select v-model="year">
+            <!-- 一開始會選擇value=""為預設選擇 -->
+            <option disabled value="">Select Year</option>
+            <!-- 如果沒有value會直接顯示文字 -->
+            <option>2015</option>
+            <option value="16">2016</option>
+            <option value="17">2017</option>
+        </select>
+        <h1>{{year}}</h1>
+
+        <!-- 2 多選，綁定陣列 -->
+        <select v-model="years" multiple>
+            <option disabled value="">Select Year</option>
+            <option>2015</option>
+            <option value="16">2016</option>
+            <option value="17">2017</option>
+        </select>
+        <h1>{{years}}</h1>
+
+        <!-- 3 -->
+        <select v-model="selectedYear">
+            <option v-for="year in years" :value="year">{{year}}</option>
+        </select>
+        <h1>{{selectedYear}}</h1>
+
+        <!-- 4 -->
+        <select v-model="selectedMonth">
+            <option v-for="month in 12" :value="month">{{month}}</option>
+        </select>
+        <h1>{{selectedMonth}}</h1>
+
+        <!-- 5 -->
+        <select v-model="selectedGender">
+            <option v-for="option in options" :value="option.value">{{option.text}}</option>
+        </select>
+        <h1>{{selectedGender}}</h1>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                // 1
+                // year: '',
+
+                // 2
+                // years: [],
+
+                // 3
+                years: [2015, 2016, 2017],
+                selectedYear: 2015,
+
+                // 4
+                selectedMonth: 1,
+
+                // 5
+                options:[
+                    {value:1, text:'Male'},
+                    {value:2, text:'Female'},
+                    {value:3, text:'Others'},
+                ],
+                selectedGender: 1,
+            },
+        });
+    </script>
+</body>
+
+</html>

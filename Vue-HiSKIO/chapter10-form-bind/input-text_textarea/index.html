@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+
+    <style>
+        h1 {
+            white-space: pre;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-model =  v-bind:value + v-on:input-->
+        <input type="text" v-model="msg">
+        <input type="text" :value="msg" @input="setMessage">
+        <h1>{{msg}}</h1>
+        <!-- 多行，pre標籤會保存換行字元 -->
+        <textarea v-model="message"></textarea>
+        <pre>{{message}}</pre>
+        <h1>{{message}}</h1>
+        
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                msg:'',
+                message:'',
+            },
+            methods:{
+                setMessage(evt){
+                    console.log(evt);
+                    this.msg = evt.target.value;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

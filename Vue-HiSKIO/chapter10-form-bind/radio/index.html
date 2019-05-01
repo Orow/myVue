@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 透過v-model綁定相同名稱來達成單選 -->
+        <input type="radio" id="r1" v-model="gender" value="male">
+        <label for="r1">Male</label>
+        <input type="radio" id="r2" v-model="gender" value="female">
+        <label for="r2">Female</label>
+        <h1>{{gender}}</h1>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                gender: 'male',
+            },
+        });
+    </script>
+</body>
+
+</html>

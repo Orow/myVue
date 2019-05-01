@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1 agree 後submit才會成功 -->
+        <input type="checkbox" id="check" v-model="agree">
+        <label for="check">Agree</label>
+        <h1>{{agree}}</h1>
+        <button @click="submit">Submit</button>
+
+        <!-- 2 多選 -->
+        <input type="checkbox" id="check1" value="morning" v-model="times">
+        <label for="check1">Morning</label>
+        <input type="checkbox" id="check2" value="afternoon" v-model="times">
+        <label for="check2">Afternoon</label>
+        <input type="checkbox" id="check3" value="evening" v-model="times">
+        <label for="check3">Evening</label>
+        <h1>{{times}}</h1>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            // 1
+            // data: {
+            //     agree: false,
+            // },
+            // methods: {
+            //     submit() {
+            //         if (this.agree !== true){
+            //             alert('Please agree!');
+            //             return;
+            //         }
+            //     },
+            // },
+            // 2
+            data:{
+                times:[],
+            },
+        });
+    </script>
+</body>
+
+</html>

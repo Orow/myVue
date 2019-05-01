@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.3/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <form @submit.prevent="submit">
+            <label>Title</label>
+            <input type="text" v-model='title'>
+            <br>
+            <label>URL</label>
+            <input type="text" v-model='url'>
+            <br>
+            <label>Teacher</label>
+            <select v-model='teacher'>
+                <option v-for="teacher in teachers">{{teacher}}</option>
+            </select>
+            <br>
+            <label>Completed</label>
+            <input type="checkbox" v-model='completed'>
+            <br>
+            <label>Image</label>
+            <input type="file" accept="image/*" @change="fileSelected">
+            <br>
+            <img v-if="img" :src="img" width="200">
+            <button type="submit">Submit</button>
+        </form>
+        <hr>
+        <div>
+            <div v-for="lesson in lessons">
+                <img :src="lesson.image" width="100">
+                <a :href="lesson.url">
+                    <span>{{lesson.title}}</span>
+                </a>
+                <span>{{lesson.teacher}}</span>
+                <span>{{lesson.completed == 'true'?'完成':'未完成'}}</span>
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+        const URI = 'http://localhost:8081/';
+        new Vue({
+            el: '#app',
+            data: {
+                title: '',
+                url: '',
+                teachers: ['Scars', 'Jason', 'Paul', 'Roy'],
+                teacher: '',
+                completed: false,
+                img: '',
+                lessons: [],
+            },
+            methods: {
+                fileSelected(evt) {
+                    const file = evt.target.files.item(0);
+                    const reader = new FileReader();
+                    reader.addEventListener('load', this.imgloaded);
+                    reader.readAsDataURL(file);
+                },
+                imgloaded(evt) {
+                    this.img = evt.target.result;
+                },
+                submit() {
+                    $.post(URI, {
+                        title: this.title,
+                        url: this.url,
+                        teacher: this.teacher,
+                        completed: this.completed,
+                        image: this.img,
+                    // 這邊不需要then去清除內容，在submit後會自己清除    
+                    // }).then(() => {
+                    //     this.title = '';
+                    //     this.url = '';
+                    //     this.teacher = "";
+                    //     this.completed = false;
+                    //     this.img = "";
+                    //     this.loadLessons();
+                    });
+                },
+                // 目前不需要此function即可動態看到結果
+                // loadLessons(){
+                //     $.get(URI).then(lessons => this.lessons = lessons);
+                // },
+            },
+            mounted() {
+                // then()，promise用法
+                $.get(URI).then(lessons => this.lessons = lessons);
+                // 沒有去清除內容後接著get資訊即可看到
+                // this.loadLessons();
+            },
+        });
+    </script>
+</body>
+
+</html>

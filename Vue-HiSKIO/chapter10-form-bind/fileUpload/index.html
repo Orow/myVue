@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="file" @change="fileSelected">
+        <img v-if="image" :src="image" width=200>
+        <button @click="upload">Upload</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                image: '',
+                file: null,
+            },
+            methods: {
+                fileSelected(evt) {
+                    // 圖片預覽
+                    // const file = evt.target.files.item(0);
+                    // 檔案上傳
+                    this.file = evt.target.files.item(0);
+                    const reader = new FileReader();
+                    reader.addEventListener('load', this.imageloaded);
+                    // 將屬性result轉完data:URL（base64編碼）
+                    reader.readAsDataURL(this.file);
+                },
+                imageloaded(evt) {
+                    console.log(evt);
+                    this.image = evt.target.result;
+                },
+                // 上傳方式視後端而定
+                upload() {
+                    // bae64字串直接上傳
+                    axios.post('/upload', {
+                        image: this.imgage
+                    });
+
+                    // formdata
+                    const form = new FormData();
+                    form.append(this.file, this.file.name);
+                    axios.post('/upload', form);
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>
