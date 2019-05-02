@@ -23,8 +23,8 @@
             > -->
 
             <!-- removeItem(index)改用index -->
-            <li v-for="(item, index) in items" v-on:click="removeItem(index)">
-                {{item}}
+            <li v-for="(item, index) in items">
+                <a v-on:click="removeItem(index)" href="#">刪除 </a>{{item}}
             </li>
         </ul>
     </div>

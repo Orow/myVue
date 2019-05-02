@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <button @click="component='signin-form'">Signin-Form</button>
+            <button @click="component='user-check'">User-Check</button>
+        </div>
+        <hr>
+        <keep-alive>
+            <component :is="component"></component>
+        </keep-alive>
+    </div>
+
+    <script>
+        const URL = 'http://localhost:3000';
+
+        Vue.component('user-check', {
+            data() {
+                return {
+                    username: '',
+                    exists: false,
+                }
+            },
+            methods: {
+                submit() {
+                    axios.get(`${URL}/exists/${this.username}`)
+                        .then(res => {
+                            this.exists = res.data.exists;
+                        });
+                },
+            },
+            watch: {
+                username() {
+                    // this.submit();
+                    this.submitDebounced();
+                }
+            },
+            created() {
+                // lodash library中的debounce來實現delay
+                // 執行為submitDebounced後，經過設定的時間後才去執行this.submit，過程中不會重複執行
+                // 第一個參數為某一個函式，第二個為延遲時間ms
+                this.submitDebounced = _.debounce(this.submit, 500);
+            },
+            template: `
+            <div>
+                <label>Username</label>
+                <input type="text" v-model="username">
+                <br>
+                <span>{{exists}}</span>
+            </div>
+            `,
+        });
+
+        Vue.component('signin-form', {
+            data() {
+                return {
+                    username: '',
+                    password: '',
+                    loggedUser: null, // 登入成功會綁定v-if顯示在html上
+                    error: '', // 登入帳號密碼錯誤的錯誤訊息
+                    loading: false, // loading會disabled
+                }
+            },
+            methods: {
+                submit() {
+                    this.loading = true;
+                    axios.post(`${URL}/login`, {
+                            username: this.username,
+                            password: this.password,
+                        })
+                        .then(res => {
+                            console.log(res.data.success);
+                            this.loading = false;
+                            if (res.data.success) {
+                                this.loggedUser = res.data.name;
+                            } else {
+                                this.error = 'Incorrect username/password'
+                            }
+                        });
+                },
+            },
+            // 偵聽一改變帳號或密碼就清除錯誤訊息
+            watch: {
+                username() {
+                    this.error = '';
+                },
+                password() {
+                    this.error = '';
+                },
+            },
+            template: `
+            <div>
+                <h1 v-if="loggedUser">Welcome! {{loggedUser}}</h1>
+                <form v-else @submit.prevent="submit">
+                    <label>Username</label>
+                    <input type="text" v-model="username" :disabled="loading">
+                    <br>
+                    <label>Password</label>
+                    <input type="password" v-model="password" :disabled="loading">
+                    <br>
+                    <button type="submit" :disabled="loading">Submit</button>
+                    <br>
+                    <span v-if="error">{{error}}</span>
+                </form>
+            </div>
+            `,
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                component: 'signin-form',
+            },
+        });
+    </script>
+</body>
+
+</html>

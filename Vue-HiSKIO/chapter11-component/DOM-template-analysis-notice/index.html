@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <select>
+            <my-component></my-component>
+        </select> -->
+        <!-- <ul>
+            <ul-component></ul-component>
+        </ul>
+        <table>
+            <table-component></table-component>
+        </table> -->
+    </div>
+
+    <script>
+        Vue.component('my-component', {
+            template: '<option>Hello</option>'
+        })
+        // Vue.component('ul-component', {
+        //     template: '<li>Hello</li>'
+        // })
+        // Vue.component('table-component', {
+        //     template: '<tr><td>Hello</tr></td>'
+        // })
+        new Vue({
+            el:'#app',
+            template:'<div id="app"><select><my-component></my-component></select></div>'
+        });
+    </script>
+</body>
+</html>

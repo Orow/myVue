@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <todolist></todolist>
+    </div>
+
+    <script>
+        Vue.component('todo-input', {
+            data(){
+                return {
+                    text:'',
+                };
+            },
+            methods:{
+                submit(){
+                    // 第一個參數：發出input事件，第二個參數：input事件帶的是this.text的值
+                    this.$emit('input', this.text);
+                    this.text='';
+                },
+            },
+            template: `
+                <form @submit.prevent="submit">
+                    <input type="text" v-model="text">
+                    <button type="submit">Submit</button>
+                </form>
+            `
+        });
+        Vue.component('todo-item', {
+            // 宣告props名稱
+            props: ['label'],
+            template: `<li>{{label}}</li>`
+        })
+        Vue.component('todolist', {
+            data() {
+                return {
+                    todos: ['a','b','c'],
+                };
+            },
+            methods:{
+                // 下層input事件emit後，要執行此function
+                addTodo(text){
+                    this.todos.push(text);
+                },
+            },
+            template: `
+            <div>
+                <todo-input @input="addTodo"></todo-input>
+                <ul>
+                    <todo-item v-for="todo in todos" :label="todo"></todo-item>
+                </ul>
+            </div>    
+            `
+        })
+        new Vue({
+            el: '#app'
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-component></my-component>
+        <local-component></local-component>
+    </div>
+
+    <script>
+        // Global
+        Vue.component('my-component', {
+            // option
+            template: '<div>My component</div>', // 定義視覺元素(html)
+        })
+        new Vue({
+            el: '#app',
+            // Local
+            components: {
+                'local-component': {
+                    template: '<div>Local component</div>',
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>

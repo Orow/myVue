@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 點擊會變更data中的content -->
+        <button @click="content='lessons'">Lessons</button>
+        <button @click="content='apply'">Apply</button>
+        <br>
+        <!-- :is 來自data中的content -->
+        <!-- <component :is="content"></component> -->
+
+        <!-- keep-alive 切換組件要保留原本的資料 -->
+        <keep-alive>
+            <component :is="content"></component>
+        </keep-alive>
+    </div>
+
+    <script>
+        Vue.component('apply', {
+            template:`
+            <form>
+                <textarea></textarea>
+                <br>
+                <button>submit</button>
+            </form>
+            `,
+        });
+        Vue.component('lessons', {
+            template:`
+            <ul>
+                <li>Vue tutorial</li>
+                <li>React tutorial</li>
+                <li>Angular tutorial</li>
+            </ul>
+            `,
+        });
+        new Vue({
+            el:'#app',
+            data:{
+                content: 'lessons',
+            },
+        });
+    </script>
+</body>
+</html>

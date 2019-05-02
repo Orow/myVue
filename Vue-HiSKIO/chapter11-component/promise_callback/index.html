@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <script>
+        // callback 
+        // jQuery
+        // function getRandomEmail() {
+        //     let email;
+        //     $.getJSON('https://randomuser.me/api', function (data) {
+        //         email = data.results[0].email;
+        //     });
+        //     return email; // 會比ajax非同步呼叫還早執行
+        // }
+        // const email = getRandomEmail();
+        // console.log(email); //undefined
+
+        // getRandomEmail函式加上callback，會從ajax完成後的callback傳入
+        // function getRandomEmail(callback) {
+        //     $.getJSON('https://randomuser.me/api', function (data) {
+        //         callback(data.results[0].email); // ajax完成後的callback
+        //     });
+        // }
+        // 單個
+        // getRandomEmail(function (email) {
+        //     console.log(email);
+        // });
+
+        // 多個，巢狀callback函式，callback hell
+        // const emails = [];
+        // getRandomEmail(function (email) {
+        //     emails.push(email);
+        //     getRandomEmail(function (email) {
+        //         emails.push(email);
+        //         getRandomEmail(function (email) {
+        //             emails.push(email);
+        //             console.log(emails);
+        //         });
+        //     });
+        // });
+        
+        // Promise
+        function getRandomEmailPromise() {
+            // new Promise函式括號中兩個參數都是函式
+            return new Promise(function (resolve, reject) {
+                $.getJSON('https://randomuser.me/api', function (data) {
+                    resolve(data.results[0].email); // ajax呼叫成功就會呼叫resolve
+                    // 失敗就是reject
+                });
+            });
+        }
+        const emailsPromise= [];
+        // getRandomEmailPromise()
+        // .then(function(email){
+        //     emailsPromise.push(email);
+        //     return getRandomEmailPromise(); // return後給接下來的.then使用
+        // })
+        // .then(function(email){
+        //     emailsPromise.push(email);
+        //     return getRandomEmailPromise(); // return後給接下來的.then使用
+        // })
+        // .then(function(email){
+        //     emailsPromise.push(email);
+        //     console.log(emailsPromise);
+        // })
+        
+        // async /await ES6~ES8，promise變成很像同步呼叫一樣去使用
+        async function getEmails(){
+            // let email;
+            // email = await getRandomEmailPromise();
+            // emailsPromise.push(email);
+            // email = await getRandomEmailPromise();
+            // emailsPromise.push(email);
+            // email = await getRandomEmailPromise();
+            // emailsPromise.push(email);
+
+            emailsPromise.push(await getRandomEmailPromise());
+            emailsPromise.push(await getRandomEmailPromise());
+            emailsPromise.push(await getRandomEmailPromise());
+            console.log(emailsPromise);
+        }
+        getEmails();
+
+    </script>
+</body>
+
+</html>

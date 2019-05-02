@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- html中只能用kebab-case -->
+        <my-first-component></my-first-component>
+    </div>
+
+    <script>
+        // my first component
+        'my-first-component' // kebab-case - html中只能用這個
+        'myFirstComponent'   // camel-case - template中皆可
+        'MyFirstComponent'   // Pascal-case
+ 
+        Vue.component('my-first-component', {
+            template: '<h1>Hello</h1>'
+        })
+
+        new Vue({
+            // el 綁定html則在html只能用kebab case
+            el:'#app',
+
+            // template不受限制
+            // template:`
+            // <div>
+            //     <myFirstComponent></myFirstComponent>
+            //     self-closing
+            //     <myFirstComponent>
+            // </div>
+            // `,
+        });
+    </script>
+</body>
+</html>
