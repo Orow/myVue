@@ -13,7 +13,9 @@
 <body>
     <div id="app">
         <input type="file" @change="fileSelected">
+        <br>
         <img v-if="image" :src="image" width=200>
+        <br>
         <button @click="upload">Upload</button>
     </div>
 
@@ -22,6 +24,7 @@
             el: '#app',
             data: {
                 image: '',
+                // 檔案上傳要在data中宣告file
                 file: null,
             },
             methods: {

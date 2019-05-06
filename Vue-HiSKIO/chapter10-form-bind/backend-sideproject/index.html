@@ -15,13 +15,13 @@
 <body>
     <div id="app">
         <form @submit.prevent="submit">
-            <label>Title</label>
+            <label>Title:</label>
             <input type="text" v-model='title'>
             <br>
-            <label>URL</label>
+            <label>URL:</label>
             <input type="text" v-model='url'>
             <br>
-            <label>Teacher</label>
+            <label>Teacher:</label>
             <select v-model='teacher'>
                 <option v-for="teacher in teachers">{{teacher}}</option>
             </select>
@@ -29,7 +29,7 @@
             <label>Completed</label>
             <input type="checkbox" v-model='completed'>
             <br>
-            <label>Image</label>
+            <label>Image:</label>
             <input type="file" accept="image/*" @change="fileSelected">
             <br>
             <img v-if="img" :src="img" width="200">
@@ -56,7 +56,7 @@
             data: {
                 title: '',
                 url: '',
-                teachers: ['Scars', 'Jason', 'Paul', 'Roy'],
+                teachers: ['Orow', 'Jason', 'Paul', 'Roy'],
                 teacher: '',
                 completed: false,
                 img: '',

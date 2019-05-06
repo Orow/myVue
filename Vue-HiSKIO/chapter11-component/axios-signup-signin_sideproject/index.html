@@ -55,7 +55,7 @@
             },
             template: `
             <div>
-                <label>Username</label>
+                <label>Username:</label>
                 <input type="text" v-model="username">
                 <br>
                 <span>{{exists}}</span>
@@ -104,10 +104,10 @@
             <div>
                 <h1 v-if="loggedUser">Welcome! {{loggedUser}}</h1>
                 <form v-else @submit.prevent="submit">
-                    <label>Username</label>
+                    <label>Username:</label>
                     <input type="text" v-model="username" :disabled="loading">
                     <br>
-                    <label>Password</label>
+                    <label>Password:</label>
                     <input type="password" v-model="password" :disabled="loading">
                     <br>
                     <button type="submit" :disabled="loading">Submit</button>
