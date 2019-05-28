@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1 -->
+        <!-- <post :text="text"></post> -->
+
+        <!-- 2 -->
+        <!-- <post v-for="text in posts" :text='text'></post> -->
+
+        <!-- 3 -->
+        <!-- <post v-for="post in posts" :text="post.text" :author="post.author"></post> -->
+        <!-- <post v-for="post in posts" v-bind="post"></post> -->
+
+        <!-- 4 -->
+        <count :number="1"></count>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            data:{
+                // 1
+                // text: 'hello',
+                
+                // 2
+                // posts:[
+                //     'Hello',
+                //     'World',
+                // ],
+
+                // 3
+                // posts: [
+                //     {text: 'Hello', author: 'Jason'},
+                //     {text: 'World', author: 'Mike'},
+                // ],
+            },
+            components: {
+                // post: {
+                //     // 1,2
+                //     // props: ['text'],
+                //     // template: '<div>{{text}}</div>'
+
+                //     // 3
+                //     props: ['text', 'author'],
+                //     template: '<div>{{author}}:{{text}}</div>'
+                // },
+                count: {
+                    props: ['number'],
+                    template: '<div>{{number+1}}</div>'
+                },
+            },
+        });
+    </script>
+</body>
+</html>
