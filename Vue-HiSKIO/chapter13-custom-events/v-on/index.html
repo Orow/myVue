@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,67 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 </head>
 </head>
+
 <body>
-    
+    <div id="app">
+        <!-- 1 -->
+        <!-- <my-button v-on:my-click="clicked"></my-button> -->
+
+        <!-- 2 -->
+        <my-counter @count-emit="countEmit"></my-counter>
+        <h1>{{count}}</h1>
+    </div>
+
+    <script>
+        // component-1
+        // Vue.component('my-button',{
+        //     template:`<button @click="myClick">my-button</button>`,
+        //     methods:{
+        //         myClick(){
+        //             this.$emit('my-click', 100,200,300); //第一個參數是事件，第二個之後的參數是資料
+        //         },
+        //     },
+        // }),
+
+        // component-2
+        Vue.component('my-counter', {
+                template: `
+            <div>
+                <h1>{{count}}</h1>
+                <button @click="count+=1">+1</button>
+                <button @click="emit">emit</button>
+            </div>
+            `,
+                data() {
+                    return {
+                        count: 0,
+                    }
+                },
+                methods: {
+                    emit() {
+                        this.$emit('count-emit', this.count);
+                    },
+                },
+            }),
+            new Vue({
+                el: '#app',
+                // 2
+                data: {
+                    count: 0,
+                },
+                methods: {
+                    // 1
+                    // clicked(x,y,z){
+                    //     alert('clicked' + `${x},${y},${z}`);
+                    // },
+
+                    // 2
+                    countEmit(count) {
+                        this.count = count;
+                    },
+                },
+            })
+    </script>
 </body>
+
 </html>
