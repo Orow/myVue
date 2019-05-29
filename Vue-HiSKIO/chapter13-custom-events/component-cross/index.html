@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1 -->
+        <!-- <my-count :count="count"></my-count>
+        <my-button @click.native="count+=1"></my-button> -->
+
+        <!-- 3 event bus -->
+        <my-count></my-count>
+        <my-button></my-button>
+
+    </div>
+
+    <script>
+        const bus = new Vue();
+        Vue.component('my-count', {
+                // 1
+                // props: ['count'],
+                data() {
+                    return {
+                        count: 0,
+                    };
+                },
+                mounted() {
+                    // 偵聽外層的'add'事件
+                    bus.$on('add',() => {
+                        // 用箭頭函式的this是繼承而來，指的就是這個組件，如果不是用箭頭函式，this則會指到bus這個Vue
+                        this.count += 1;
+                    });
+                },
+                template: `<h1>{{count}}</h1>`,
+            }),
+            Vue.component('my-button', {
+                // 1
+                //     template: `
+                // <button>+1</button>
+                // `
+                // 3 event bus
+                template: `<button @click="click">+1</button>`,
+                methods: {
+                    click() {
+                        // 外層宣告的bus發出'add'事件
+                        bus.$emit('add')
+                    },
+                },
+            }),
+            new Vue({
+                el: '#app',
+                // 1
+                // data:{
+                //     count:0,
+                // }
+            })
+    </script>
+</body>
+
+</html>
