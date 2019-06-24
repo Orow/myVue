@@ -11,6 +11,7 @@ import AboutFamily from "./AboutFamily.vue";
 Vue.use(VueRouter);
 
 export default new VueRouter({
+  mode: "history",
   routes: [
     {
       path: '/',
