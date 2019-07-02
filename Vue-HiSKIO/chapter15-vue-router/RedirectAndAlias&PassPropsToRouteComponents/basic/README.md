@@ -1,4 +1,4 @@
-# basic_store_state
+# basic
 
 > A Vue.js project
 
