@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>basic_store_state</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <!-- 引入 -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.1.1/vuex.min.js" integrity="sha256-6XOQHnT/ZYiLvi5YuVz7lX1dsxa7GFoQb1Q9mRdtHWU=" crossorigin="anonymous"></script> -->
+  </head>
+  <body>
+    <div id="app">
+      <!-- 引入 -->
+      <!-- <h1>{{count}}</h1>
+      <button @click="addCount">Add</button> -->
+
+    </div>
+    
+    <script src="/dist/build.js"></script>
+
+    <!-- 引入 -->
+    <!-- <script>
+      const store = new Vuex.Store({
+        state: {
+          count: 0,
+        },
+        mutations: {
+          addCount(state){
+            state.count += 1;
+          },
+        },
+      });
+
+      new Vue({
+        el: '#app',
+        store: store,
+        computed: {
+          count(){
+            return this.$store.state.count;
+          },
+        },
+        methods:{
+          addCount(){
+            this.$store.commit('addCount');
+          },
+        },
+      });
+    </script> -->
+  </body>
+</html>
