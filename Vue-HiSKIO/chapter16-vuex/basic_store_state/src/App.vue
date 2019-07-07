@@ -30,10 +30,28 @@ export default {
   // mapMutations
   // methods: mapMutations(['addCount']),
 
+  data(){
+    return {
+      localCount: 0,
+    };
+  },
+
   // mapState, mapMutations 結合ES6 Spread 語法來寫多個 computed 跟 methods
   computed: {
-   ... mapState(['count'])
+    ... mapState(['count']),
+    //  本身實例的computed
+    myCount(){
+      return this.localCount;
+    },
   },
+
+  // mapState 傳入陣列
+  // computed: mapState([
+  //   'count',
+  //   'lists',
+  //   'username'
+  // ]),
+
   methods: {
     ...mapMutations(['addCount'])
   },
@@ -42,30 +60,5 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>
