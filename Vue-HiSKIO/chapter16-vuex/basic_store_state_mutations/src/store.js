@@ -11,17 +11,23 @@ const store = new  Vuex.Store({
         usernsme: '',
         list: [],
     },
-    mutations: {
-        addCount(state){
-            state.count += 1;
+    // 透過 mutations 改變 state
+    // mutations: {
+    //     addCount(state){
+    //         state.count += 1;
 
             // 不存在的狀態屬性
             // Vue.set(state, 'loading', false);
-        },
-    },
+        // },
+    // },
     
     // 以上 state
     // 以下 mutations
+    mutations: {
+        addCount(state){
+            state.count = state.count + payload;
+        },
+    },
 });
 
 export default store;
