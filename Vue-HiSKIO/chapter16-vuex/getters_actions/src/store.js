@@ -1,4 +1,3 @@
-// store.js
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -12,22 +11,12 @@ const store = new  Vuex.Store({
         list: [],
     },
     // 透過 mutations 改變 state
-    // mutations: {
-    //     addCount(state){
-    //         state.count += 1;
+    mutations: {
+        addCount(state){
+            state.count += 1;
 
             // 不存在的狀態屬性
             // Vue.set(state, 'loading', false);
-        // },
-    // },
-    
-    // 以上 state
-    // 以下 mutations
-    mutations: {
-        addCount(state){
-            // state.count = state.count + payload;
-            // commit傳入為物件時
-            state.count = state.count + payload.step;
         },
     },
 });

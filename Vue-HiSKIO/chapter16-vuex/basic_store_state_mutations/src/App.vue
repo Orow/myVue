@@ -2,7 +2,6 @@
   <div>
     <h1>{{count}}</h1>
     <button @click="addCount">add</button>
-    <!-- 傳入payload -->
     <button @click="addCount(2)">add</button>
     <!-- mutations 中傳入物件，函式命名更改 -->
     <button @click="add(2)">add</button>
