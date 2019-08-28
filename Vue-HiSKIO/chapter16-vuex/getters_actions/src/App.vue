@@ -15,8 +15,8 @@ export default {
     itemsNotFinish(){
       return this.items.filter(item => !item.done).length;
     },
-    // 從 store 傳來，使用 mapGetters
-    ...mapGetteres(['itemNotFinish']),
+    // 共用的話就從 store 傳來，使用 mapGetters，要改則是傳入物件給別名
+    ...mapGetteres(['itemNotFinish', 'itemsWithID']),
   },
   methods: {
     ...mapMutations(['addCount']),

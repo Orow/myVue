@@ -29,6 +29,8 @@ const store = new Vuex.Store({
     // 箭頭函式縮寫
     itemsWithID: state => id => state.items.filter(item => item.id === id)
   },
+
+  // 以下actions
   mutations: {
     // actions 發出 mutations 用來變更 state 中的 todos
     setTodos(state, todos) {
@@ -62,7 +64,7 @@ const store = new Vuex.Store({
         .then(todos => {
           commit("setTodos", todos);
           commit("setLoading", false);
-          this.dispatch("fetchUserInfo");
+          dispatch("fetchUserInfo");
         });
     },
     fetchUserInfo() {},
@@ -77,7 +79,7 @@ const store = new Vuex.Store({
           .then(todos => {
             commit("setTodos", todos);
             commit("setLoading", false);
-            this.dispatch("fetchUserInfo");
+            dispatch("fetchUserInfo");
             resolve();
           });
       });
@@ -90,7 +92,7 @@ const store = new Vuex.Store({
         .then(todos => {
           commit("setTodos", todos);
           commit("setLoading", false);
-          this.dispatch("fetchUserInfo");
+          dispatch("fetchUserInfo");
           resolve();
         });
     }
