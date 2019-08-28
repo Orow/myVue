@@ -1,7 +1,5 @@
 <template>
   <div>
-    <h1>{{count}}</h1>
-    <button @click="addCount">add-test</button>
   </div>
 </template>
 
