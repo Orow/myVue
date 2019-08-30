@@ -12,7 +12,7 @@
 <body>
     <div id="app">
         <my-counter v-model="outerCount"></my-counter>
-
+        <my-counter :count="outerCount" @update:count="val => outerCount = val"></my-counter>
         <!-- 等同v-model -->
         <!-- <my-counter :value="outerCount" @input="val => outerCount = val"></my-counter> -->
 
